@@ -18,7 +18,22 @@ def extract_matrix_values(lines):
     )
     return formatted_values
 
-out_file = input("Enter .out filename - ")
+def create_fortran_file(filename, content):
+    """
+    Creates a .f file with the given filename and content.
+
+    Args:
+        filename (str): The name of the .f file to create (e.g., "my_program.f").
+        content (str): The content to write into the file.
+    """
+    try:
+        with open(filename, "w") as file:
+            file.write(content)
+        print(f"File '{filename}' created successfully.")
+    except Exception as e:
+        print(f"An error occurred: {e}")  
+
+out_file = input("Enter .out filename (with .out like: Pyridazine.out) - ")
 
 with open(out_file, "r", encoding="utf-8") as file:
      out_content = file.readlines()
@@ -44,10 +59,7 @@ part3_matvals = extract_matrix_values((out_content[57:91]))
 part4_matvals = extract_matrix_values((out_content[92:144]))
 part5_matvals = extract_matrix_values((out_content[145:219]))
 
-print (part2_matvals)
-
-text = f"""      
-      SUBROUTINE ASYMTOP(j,itau,ntau,n,ac,eg)
+text = f"""      SUBROUTINE ASYMTOP(j,itau,ntau,n,ac,eg)
       IMPLICIT REAL*4 (A-H, O-Z)
  
 c
@@ -96,193 +108,193 @@ c
           RETURN
         ELSE IF ( j.EQ.3 ) THEN
           eg(1) = {part3_evals[0]} 
-          eg(2) = 0.192097E-03
-          eg(3) = 0.255847E-03
-          eg(4) = 0.256248E-03
-          eg(5) = 0.291237E-03
-          eg(6) = 0.298283E-03
-          eg(7) = 0.307931E-03
+          eg(2) = {part3_evals[1]}
+          eg(3) = {part3_evals[2]}
+          eg(4) = {part3_evals[3]}
+          eg(5) = {part3_evals[4]}
+          eg(6) = {part3_evals[5]}
+          eg(7) = {part3_evals[6]}
           ac(1,2,1) = {part3_matvals[0]} 
-          ac(1,2,2) = -0.022956E0
-          ac(1,4,1) = 0.0
-          ac(1,4,2) = 0.999736E0
-          ac(2,1,1) = -0.021433E0
-          ac(2,1,2) = 0.0
-          ac(2,3,1) = 0.999770E0
-          ac(2,3,2) = 0.000000
-          ac(3,2,1) = -0.087712E0
-          ac(3,2,2) = 0.0
-          ac(3,4,1) = 0.996146E0
-          ac(3,4,2) = 0.0
-          ac(4,3,1) = 0.0
-          ac(4,3,2) = 1.0
-          ac(5,2,1) = 0.0
-          ac(5,2,2) = 0.999736E0
-          ac(5,4,1) = 0.0
-          ac(5,4,2) = 0.022956E0
-          ac(6,1,1) = 0.999770E0
-          ac(6,1,2) = 0.0
-          ac(6,3,1) = 0.021433E0
-          ac(6,3,2) = 0.0
-          ac(7,2,1) = 0.996146E0
-          ac(7,2,2) = 0.0
-          ac(7,4,1) = 0.087712E0
-          ac(7,4,2) = 0.0
+          ac(1,2,2) = {part3_matvals[1]}
+          ac(1,4,1) = {part3_matvals[2]}
+          ac(1,4,2) = {part3_matvals[3]}
+          ac(2,1,1) = {part3_matvals[4]}
+          ac(2,1,2) = {part3_matvals[5]}
+          ac(2,3,1) = {part3_matvals[6]}
+          ac(2,3,2) = {part3_matvals[7]}
+          ac(3,2,1) = {part3_matvals[8]}
+          ac(3,2,2) = {part3_matvals[9]}
+          ac(3,4,1) = {part3_matvals[10]}
+          ac(3,4,2) = {part3_matvals[11]}
+          ac(4,3,1) = {part3_matvals[12]}
+          ac(4,3,2) = {part3_matvals[13]}
+          ac(5,2,1) = {part3_matvals[14]}
+          ac(5,2,2) = {part3_matvals[15]}
+          ac(5,4,1) = {part3_matvals[16]}
+          ac(5,4,2) = {part3_matvals[17]}
+          ac(6,1,1) = {part3_matvals[18]}
+          ac(6,1,2) = {part3_matvals[19]}
+          ac(6,3,1) = {part3_matvals[20]}
+          ac(6,3,2) = {part3_matvals[21]}
+          ac(7,2,1) = {part3_matvals[22]}
+          ac(7,2,2) = {part3_matvals[23]}
+          ac(7,4,1) = {part3_matvals[24]}
+          ac(7,4,2) = {part3_matvals[25]}
           RETURN
         ELSE IF ( j.EQ.4 ) THEN
           eg(1) = {part4_evals[0]} 
-          eg(2) = 0.307359E-03
-          eg(3) = 0.396941E-03
-          eg(4) = 0.396965E-03
-          eg(5) = 0.460146E-03
-          eg(6) = 0.461331E-03
-          eg(7) = 0.494079E-03 
-          eg(8) = 0.505805E-03
-          eg(9) = 0.513735E-03
+          eg(2) = {part4_evals[1]}
+          eg(3) = {part4_evals[2]}
+          eg(4) = {part4_evals[3]}
+          eg(5) = {part4_evals[4]}
+          eg(6) = {part4_evals[5]}
+          eg(7) = {part4_evals[6]} 
+          eg(8) = {part4_evals[7]}
+          eg(9) = {part4_evals[8]}
           ac(1,1,1) = {part4_matvals[0]} 
-          ac(1,1,2) = 0.0
-          ac(1,3,1) = -0.148707E0
-          ac(1,3,2) = 0.0
-          ac(1,5,1) = 0.988881E0
-          ac(1,5,2) = 0.0
-          ac(2,2,1) = 0.0
-          ac(2,2,2) = -0.020195E0
-          ac(2,4,1) = 0.0
-          ac(2,4,2) = 0.999796E0
-          ac(3,3,1) = 0.0
-          ac(3,3,2) = -0.048061E0
-          ac(3,5,1) = 0.0
-          ac(3,5,2) = 0.998844E0
-          ac(4,2,1) =-0.042884E0
-          ac(4,2,2) = 0.0
-          ac(4,4,1) = 0.999080E0
-          ac(4,4,2) = 0.0
+          ac(1,1,2) = {part4_matvals[1]}
+          ac(1,3,1) = {part4_matvals[2]}
+          ac(1,3,2) = {part4_matvals[3]}
+          ac(1,5,1) = {part4_matvals[4]}
+          ac(1,5,2) = {part4_matvals[5]}
+          ac(2,2,1) = {part4_matvals[6]}
+          ac(2,2,2) = {part4_matvals[7]}
+          ac(2,4,1) = {part4_matvals[8]}
+          ac(2,4,2) = {part4_matvals[9]}
+          ac(3,3,1) = {part4_matvals[10]}
+          ac(3,3,2) = {part4_matvals[11]}
+          ac(3,5,1) = {part4_matvals[12]}
+          ac(3,5,2) = {part4_matvals[13]}
+          ac(4,2,1) = {part4_matvals[14]}
+          ac(4,2,2) = {part4_matvals[15]}
+          ac(4,4,1) = {part4_matvals[16]}
+          ac(4,4,2) = {part4_matvals[17]}
           
-          ac(5,1,1) =-0.020234E0
-          ac(5,1,2) = 0.0
-          ac(5,3,1) = 0.988676E0
-          ac(5,3,2) = 0.0
-          ac(5,5,1) = 0.148692E0
-          ac(5,5,2) = 0.0
+          ac(5,1,1) = {part4_matvals[18]}
+          ac(5,1,2) = {part4_matvals[19]}
+          ac(5,3,1) = {part4_matvals[20]}
+          ac(5,3,2) = {part4_matvals[21]}
+          ac(5,5,1) = {part4_matvals[22]}
+          ac(5,5,2) = {part4_matvals[23]}
           
-          ac(6,2,1) = 0.0
-          ac(6,2,2) = 0.999796E0
-          ac(6,4,1) = 0.0
-          ac(6,4,2) = 0.020195E0
+          ac(6,2,1) = {part4_matvals[24]}
+          ac(6,2,2) = {part4_matvals[25]}
+          ac(6,4,1) = {part4_matvals[26]}
+          ac(6,4,2) = {part4_matvals[27]}
           
-          ac(7,3,1) = 0.0
-          ac(7,3,2) = 0.998844E0
-          ac(7,5,1) = 0.0
-          ac(7,5,2) = 0.048061E0
+          ac(7,3,1) = {part4_matvals[28]}
+          ac(7,3,2) = {part4_matvals[29]}
+          ac(7,5,1) = {part4_matvals[30]}
+          ac(7,5,2) = {part4_matvals[31]}
           
-          ac(8,2,1) = 0.999080E0
-          ac(8,2,2) = 0.0
-          ac(8,4,1) = 0.042884E0
-          ac(8,4,2) = 0.0
+          ac(8,2,1) = {part4_matvals[32]}
+          ac(8,2,2) = {part4_matvals[33]}
+          ac(8,4,1) = {part4_matvals[34]}
+          ac(8,4,2) = {part4_matvals[35]}
           
-          ac(9,1,1) = 0.999795E0
-          ac(9,1,2) = 0.0
-          ac(9,3,1) = 0.020125E0
-          ac(9,3,2) = 0.0
-          ac(9,5,1) = 0.002241E0
-          ac(9,5,2) = 0.0
+          ac(9,1,1) = {part4_matvals[36]}
+          ac(9,1,2) = {part4_matvals[37]}
+          ac(9,3,1) = {part4_matvals[38]}
+          ac(9,3,2) = {part4_matvals[39]}
+          ac(9,5,1) = {part4_matvals[40]}
+          ac(9,5,2) = {part4_matvals[41]}
           RETURN
         ELSE IF ( j.EQ.5 ) THEN
           eg(1) = {part5_evals[0]} 
-          eg(2) = 0.448237E-03
-          eg(3) = 0.563454E-03
-          eg(4) = 0.563455E-03
-          eg(5) = 0.652901E-03
-          eg(6) = 0.652998E-03
-          eg(7) = 0.715091E-03
-          eg(8) = 0.717785E-03
-          eg(9) = 0.747807E-03
-          eg(10) = 0.765335E-03
-          eg(11) = 0.771520E-03
-          
+          eg(2) = {part5_evals[1]}
+          eg(3) = {part5_evals[2]}
+          eg(4) = {part5_evals[3]}
+          eg(5) = {part5_evals[4]}
+          eg(6) = {part5_evals[5]}
+          eg(7) = {part5_evals[6]}
+          eg(8) = {part5_evals[7]}
+          eg(9) = {part5_evals[8]}
+          eg(10) = {part5_evals[9]}
+          eg(11) = {part5_evals[10]}
+
           ac(1,2,1) = {part5_matvals[0]} 
-          ac(1,2,2) = 0.000490E0
-          ac(1,4,1) = 0.0
-          ac(1,4,2) = -0.080483E0
-          ac(1,6,1) = 0.0
-          ac(1,6,2) = 0.996756E0
+          ac(1,2,2) = {part5_matvals[1]}
+          ac(1,4,1) = {part5_matvals[2]}
+          ac(1,4,2) = {part5_matvals[3]}
+          ac(1,6,1) = {part5_matvals[4]}
+          ac(1,6,2) = {part5_matvals[5]}
           
-          ac(2,1,1) = 0.000462E0
-          ac(2,1,2) = 0.0
-          ac(2,3,1) = -0.067930E0
-          ac(2,3,2) = 0.0
-          ac(2,5,1) = 0.997690E0
-          ac(2,5,2) = 0.0
+          ac(2,1,1) = {part5_matvals[6]}
+          ac(2,1,2) = {part5_matvals[7]}
+          ac(2,3,1) = {part5_matvals[8]}
+          ac(2,3,2) = {part5_matvals[9]}
+          ac(2,5,1) = {part5_matvals[10]}
+          ac(2,5,2) = {part5_matvals[11]}
           
-          ac(3,2,1) = 0.002332E0
-          ac(3,2,2) = 0.0
-          ac(3,4,1) = -0.218480E0
-          ac(3,4,2) = 0.0
-          ac(3,6,1) = 0.975839E0
-          ac(3,6,2) = 0.0
+          ac(3,2,1) = {part5_matvals[12]}
+          ac(3,2,2) = {part5_matvals[13]}
+          ac(3,4,1) = {part5_matvals[14]}
+          ac(3,4,2) = {part5_matvals[15]}
+          ac(3,6,1) = {part5_matvals[16]}
+          ac(3,6,2) = {part5_matvals[17]}
           
-          ac(4,3,1) = 0.0
-          ac(4,3,2) = -0.039592E0
-          ac(4,5,1) = 0.0
-          ac(4,5,2) = 0.999216E0
+          ac(4,3,1) = {part5_matvals[18]}
+          ac(4,3,2) = {part5_matvals[19]}
+          ac(4,5,1) = {part5_matvals[20]}
+          ac(4,5,2) = {part5_matvals[21]}
           
-          ac(5,2,1) = 0.0
-          ac(5,2,2) = -0.019220E0
-          ac(5,4,1) = 0.0
-          ac(5,4,2) = 0.996571E0
-          ac(5,6,1) = 0.0
-          ac(5,6,2) = 0.080477E0
+          ac(5,2,1) = {part5_matvals[22]}
+          ac(5,2,2) = {part5_matvals[23]}
+          ac(5,4,1) = {part5_matvals[24]}
+          ac(5,4,2) = {part5_matvals[25]}
+          ac(5,6,1) = {part5_matvals[26]}
+          ac(5,6,2) = {part5_matvals[27]}
           
-          ac(6,1,1) = -0.019219E0
-          ac(6,1,2) = 0.0
-          ac(6,3,1) = 0.997505E0
-          ac(6,3,2) = 0.0
-          ac(6,5,1) = 0.067926E0
-          ac(6,5,2) = 0.0
+          ac(6,1,1) = {part5_matvals[28]}
+          ac(6,1,2) = {part5_matvals[29]}
+          ac(6,3,1) = {part5_matvals[30]}
+          ac(6,3,2) = {part5_matvals[31]}
+          ac(6,5,1) = {part5_matvals[32]}
+          ac(6,5,2) = {part5_matvals[33]}
           
-          ac(7,2,1) = -0.039774E0
-          ac(7,2,2) = 0.0
-          ac(7,4,1) = 0.975049E0
-          ac(7,4,2) = 0.0
-          ac(7,6,1) = 0.218399E0
-          ac(7,6,2) = 0.0
+          ac(7,2,1) = {part5_matvals[34]}
+          ac(7,2,2) = {part5_matvals[35]}
+          ac(7,4,1) = {part5_matvals[36]}
+          ac(7,4,2) = {part5_matvals[37]}
+          ac(7,6,1) = {part5_matvals[38]}
+          ac(7,6,2) = {part5_matvals[39]}
           
-          ac(8,3,1) = 0.0
-          ac(8,3,2) = 0.999216E0
-          ac(8,5,1) = 0.0
-          ac(8,5,2) = 0.039592E0
+          ac(8,3,1) = {part5_matvals[40]}
+          ac(8,3,2) = {part5_matvals[41]}
+          ac(8,5,1) = {part5_matvals[42]}
+          ac(8,5,2) = {part5_matvals[43]}
           
-          ac(9,2,1) = 0.0
-          ac(9,2,2) = 0.999815E0
-          ac(9,4,1) = 0.0
-          ac(9,4,2) = 0.019197E0
-          ac(9,6,1) = 0.0
-          ac(9,6,2) = 0.001059E0
+          ac(9,2,1) = {part5_matvals[44]}
+          ac(9,2,2) = {part5_matvals[45]}
+          ac(9,4,1) = {part5_matvals[46]}
+          ac(9,4,2) = {part5_matvals[47]}
+          ac(9,6,1) = {part5_matvals[48]}
+          ac(9,6,2) = {part5_matvals[49]}
           
-          ac(10,1,1) = 0.999815E0
-          ac(10,1,2) = 0.0
-          ac(10,3,1) = 0.019206E0
-          ac(10,3,2) = 0.0
-          ac(10,5,1) = 0.000844E0
-          ac(10,5,2) = 0.0
+          ac(10,1,1) = {part5_matvals[50]}
+          ac(10,1,2) = {part5_matvals[51]}
+          ac(10,3,1) = {part5_matvals[52]}
+          ac(10,3,2) = {part5_matvals[53]}
+          ac(10,5,1) = {part5_matvals[54]}
+          ac(10,5,2) = {part5_matvals[55]}
           
-          ac(11,2,1) = 0.999206E0
-          ac(11,2,2) = 0.0
-          ac(11,4,1) = 0.039322E0
-          ac(11,4,2) = 0.0
-          ac(11,6,1) = 0.006416E0
-          ac(11,6,2) = 0.0
+          ac(11,2,1) = {part5_matvals[56]}
+          ac(11,2,2) = {part5_matvals[57]}
+          ac(11,4,1) = {part5_matvals[58]}
+          ac(11,4,2) = {part5_matvals[59]}
+          ac(11,6,1) = {part5_matvals[60]}
+          ac(11,6,2) = {part5_matvals[61]}
           RETURN 
         ELSE
           eg(1) = {part1_evals[0]} 
-          eg(2) = 0.390220E-04 
-          eg(3) = 0.512550E-04 
-          ac(1,2,1) = {part1_evals[0]} 
-          ac(1,2,2) = 1.0
-          ac(2,1,1) = 1.0
-          ac(2,1,2) = 0.0
-          ac(3,2,1) = 1.0
-          ac(3,2,2) = 0.0
+          eg(2) = {part1_evals[1]}
+          eg(3) = {part1_evals[2]}
+          ac(1,2,1) = {part1_matvals[0]} 
+          ac(1,2,2) = {part1_matvals[1]}
+          ac(2,1,1) = {part1_matvals[2]}
+          ac(2,1,2) = {part1_matvals[3]}
+          ac(3,2,1) = {part1_matvals[4]}
+          ac(3,2,2) = {part1_matvals[5]}
           RETURN
         END IF
       END IF
@@ -292,22 +304,6 @@ c
 
       RETURN
       END"""
-    
-def create_fortran_file(filename, content):
-    """
-    Creates a .f file with the given filename and content.
 
-    Args:
-        filename (str): The name of the .f file to create (e.g., "my_program.f").
-        content (str): The content to write into the file.
-    """
-    try:
-        with open(filename, "w") as file:
-            file.write(content)
-        print(f"File '{filename}' created successfully.")
-    except Exception as e:
-        print(f"An error occurred: {e}")    
-
-
-
-
+new_filename = input("Enter filename to be saved as (with .f like: update.f) - ")   
+create_fortran_file(new_filename, text)  
